@@ -1,0 +1,15 @@
+{
+	"sqlconn": {
+		"connectionLimit": 10,
+		"host": "localhost",
+		"user": "root",
+		"password": "root",
+		"database": "notes",
+		"port": 3306,
+		"multipleStatements": true
+	},	
+	"admin": {
+		"port": 9040,
+		"corsorigin": "http://localhost"
+	}
+}
