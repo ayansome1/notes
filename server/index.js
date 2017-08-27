@@ -5,7 +5,7 @@
 let config = require('./config/config.json');
 let express = require('express');
 let http = require('http');
-
+let cors = require('cors');
 let passport = require('passport');
 let app = express();
 let session = require('express-session');
@@ -24,6 +24,6 @@ app.use(bodyParser.urlencoded({ // to support URL-encoded bodies
     extended: true
 }));
 
-
+app.use(cors());
 app.use(passport.initialize());
 app.use(passport.session());
