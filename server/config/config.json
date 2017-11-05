@@ -8,8 +8,8 @@
 		"port": 3306,
 		"multipleStatements": true
 	},	
-	"admin": {
-		"port": 9040,
+	"notes": {
+		"port": 9080,
 		"corsorigin": "http://localhost"
 	}
 }
