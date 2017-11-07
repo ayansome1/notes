@@ -1,8 +1,17 @@
-<style>
-.patients>.active {
-    background-color: #E0E0E0;
-}
-</style>
 <div class="container-fluid" data-ng-controller="homeController">
- {{allNotes}}
+    <div class="col-xs-12 col-sm-4 col-md-3" ng-repeat="it in allNotes">
+        <div class="col-xs-12 padding-10">
+            <div class="note-box" ng-style="{'background-color': it.color !== null ? it.color : 'white'}">
+                <div class="row">
+                    <div class="col-xs-12 font-bold">
+                        {{it.subject}}
+                    </div>
+                    <div class="col-xs-12">
+                        {{it.contents}}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    {{allNotes}}
 </div>
