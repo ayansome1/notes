@@ -16,6 +16,10 @@ app.use(bodyParser.urlencoded({ // to support URL-encoded bodies
     extended: true
 }));
 
+if (!process.env.NODE_ENV) {
+    app.use(require('morgan')('dev'));
+}
+
 let notesRoutes = require('./routes/notes-server-routes.js');
 notesRoutes(app);
 
