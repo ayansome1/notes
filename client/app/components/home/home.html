@@ -1,4 +1,11 @@
 <div class="container-fluid" data-ng-controller="homeController">
+    <!--     <div class="col-xs-12">
+        <input class="form-control center-block" style="width: 50%;" placeholder="Enter a note..." ng-click="openAddNote()">
+        <div class="center-block" style="width: 50%">
+            <input class="form-control"  placeholder="Title...">
+            <input class="form-control margin-top-10"  placeholder="Take a note...">
+        </div>
+    </div> -->
     <div class="col-xs-12 col-sm-4 col-md-3" ng-repeat="it in allNotes">
         <div class="col-xs-12 padding-10">
             <div class="note-box" ng-style="{'background-color': it.color !== null ? it.color : 'white'}">
@@ -13,5 +20,8 @@
             </div>
         </div>
     </div>
-    {{allNotes}}
+    <button class="btn btn-icon-icon btn-lg btn-float btn-round fab-bottom-right"  ng-click="openNoteModal(true)">
+        <i class="fa fa-plus"></i>
+    </button>
+    <!-- {{allNotes}} -->
 </div>
