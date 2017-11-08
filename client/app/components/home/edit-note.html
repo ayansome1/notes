@@ -1,8 +1,5 @@
-<div class="modal-header">
-    <button type="button" class="close" ng-click="closeNoteModal()">&times;</button>
-    <h4 class="modal-title"> <b>{{addOrEdit}} note</b>
-</h4>
-</div>
 <div class="modal-body margin-20 margin-top-5">
-note here
+    <span class="top-right-of-parent cursor-pointer" ng-click="closeNoteModal()"><i class="fa fa-times" aria-hidden="true"></i></span>
+    <input class="form-control no-border font-bold font-120" ng-model="editNote.subject" placeholder="Title...">
+    <input class="form-control no-border" ng-model="editNote.content" placeholder="Take a note...">
 </div>
