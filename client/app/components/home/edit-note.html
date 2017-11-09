@@ -1,12 +1,12 @@
-<div class="modal-body margin-15">
+<div class="modal-body padding-15" ng-style="{'background-color':color}">
     <span class="top-right-of-parent cursor-pointer" ng-click="closeNoteModal()"><i class="fa fa-times" aria-hidden="true"></i></span>
-    <input class="form-control no-border font-bold font-120" ng-model="editNote.subject" placeholder="Title...">
-    <input class="form-control no-border" ng-model="editNote.content" placeholder="Take a note...">
+    <input class="form-control no-border font-bold font-120" ng-style="{'background-color':color}" ng-model="editNote.subject" placeholder="Title...">
+    <input class="form-control no-border" ng-style="{'background-color':color}" ng-model="editNote.content" placeholder="Take a note...">
     <div class="row font-90 text-right padding-0 margin-right-10 text-muted" ng-show="editNote.lastEdit">
     	Edited {{editNote.lastEdit}}
     </div>
     <div class="row margin-top-5 margin-left-10 margin-right-10">
         <color-picker color="color" options="colorOptions" on-color-changed="colorChanged(newColor, oldColor)"></color-picker>
-        <button class="btn btn-outline btn-default btn-sm pull-right">Done</button>
+        <button class="btn btn-outline btn-default btn-sm pull-right" ng-disabled="!editNote.subject || !editNote.content ">Done</button>
     </div>
 </div>
