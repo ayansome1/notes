@@ -1,7 +1,7 @@
 'use strict';
 /*global angular,noty*/
 
-var app = angular.module('notesApp', ['ui.router','ngAnimate','ui.bootstrap','ngTouch']);
+var app = angular.module('notesApp', ['ui.router','ngAnimate','ui.bootstrap','ngTouch','tb-color-picker']);
 
 app.run(['$rootScope', function ($rootScope) {
 
@@ -55,3 +55,4 @@ app.run(['$rootScope', function ($rootScope) {
 }]);
 
 app.constant('baseUrl', 'http://localhost/notes/api');
+app.constant('COLORS',['transparent','#FF8A80', '#FFD180', '#FFFF8D', '#CFD8DC', '#80D8FF', '#A7FFEB', '#CCFF90']);

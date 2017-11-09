@@ -2,4 +2,7 @@
     <span class="top-right-of-parent cursor-pointer" ng-click="closeNoteModal()"><i class="fa fa-times" aria-hidden="true"></i></span>
     <input class="form-control no-border font-bold font-120" ng-model="editNote.subject" placeholder="Title...">
     <input class="form-control no-border" ng-model="editNote.content" placeholder="Take a note...">
+
+    <color-picker color="color" options="colorOptions" on-color-changed="colorChanged(newColor, oldColor)"></color-picker>
+
 </div>
