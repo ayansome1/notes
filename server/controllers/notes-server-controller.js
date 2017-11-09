@@ -22,7 +22,32 @@ let getNotes = (req, res) => {
   connection.end();
 };
 
-let saveNotes = (req,res) => {
+let saveNewNote = (req,res) => {
+
+  let data = req.body.data;
+  let params = [];
+  params.push(data);
+
+  console.log(data);
+
+  let connection = mysql.createConnection(connInfo);
+  let query = "insert into notes set ?,lastEdit=NOW();";
+
+
+  let sql = connection.query(query,params, (err, results) => {
+    if (err) {
+      console.log(err);
+      res.status(500).send(err);
+    } else {
+      res.status(200).send(results);
+    }
+  });
+  console.log(sql.sql);
+  connection.end();
+
+};
+
+let editNote = (req,res) => {
 
   let data = req.body.data;
   let params = [];
@@ -46,5 +71,6 @@ let saveNotes = (req,res) => {
 
 module.exports = {
   getNotes,
-  saveNotes
+  saveNewNote,
+  editNote
 };

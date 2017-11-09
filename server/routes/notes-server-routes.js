@@ -7,6 +7,7 @@ let notesCtrl = require('../controllers/notes-server-controller');
 module.exports = (app) =>{
 
 	app.get('/notes',notesCtrl.getNotes);
-	app.put('/notes',notesCtrl.saveNotes);
+	app.put('/notes',notesCtrl.editNote);
+	app.post('/notes',notesCtrl.saveNewNote);
 
 };

@@ -1,7 +1,7 @@
 'use strict';
 /*global angular,noty*/
 
-var app = angular.module('notesApp', ['ui.router','ngAnimate','ui.bootstrap','ngTouch','tb-color-picker']);
+var app = angular.module('notesApp', ['ui.router','ngAnimate','ui.bootstrap','ngTouch','tb-color-picker','angularMoment']);
 
 app.run(['$rootScope', function ($rootScope) {
 
