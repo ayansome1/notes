@@ -25,7 +25,7 @@ angular.module('notesApp')
 				$scope.isNewNote = true;
 			} else {
 				console.log(note);
-				$scope.editNote = note;
+				$scope.editNote = angular.copy(note);
 				$scope.isNewNote = false;
 			}
 
