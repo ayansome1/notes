@@ -1,8 +1,12 @@
-<div class="modal-body margin-20 margin-top-5">
+<div class="modal-body margin-15">
     <span class="top-right-of-parent cursor-pointer" ng-click="closeNoteModal()"><i class="fa fa-times" aria-hidden="true"></i></span>
     <input class="form-control no-border font-bold font-120" ng-model="editNote.subject" placeholder="Title...">
     <input class="form-control no-border" ng-model="editNote.content" placeholder="Take a note...">
-
-    <color-picker color="color" options="colorOptions" on-color-changed="colorChanged(newColor, oldColor)"></color-picker>
-
+    <div class="row font-90 text-right padding-0 margin-right-10 text-muted" ng-show="editNote.lastEdit">
+    	Edited {{editNote.lastEdit}}
+    </div>
+    <div class="row margin-top-5 margin-left-10 margin-right-10">
+        <color-picker color="color" options="colorOptions" on-color-changed="colorChanged(newColor, oldColor)"></color-picker>
+        <button class="btn btn-outline btn-default btn-sm pull-right">Done</button>
+    </div>
 </div>
