@@ -28,21 +28,17 @@ let saveNewNote = (req,res) => {
   let params = [];
   params.push(data);
 
-  console.log(data);
-
   let connection = mysql.createConnection(connInfo);
   let query = "insert into notes set ?,lastEdit=NOW();";
 
 
-  let sql = connection.query(query,params, (err, results) => {
+  connection.query(query,params, (err, results) => {
     if (err) {
-      console.log(err);
       res.status(500).send(err);
     } else {
       res.status(200).send(results);
     }
   });
-  console.log(sql.sql);
   connection.end();
 
 };
@@ -50,13 +46,13 @@ let saveNewNote = (req,res) => {
 let editNote = (req,res) => {
 
   let data = req.body.data;
+  delete data.lastEdit;
   let params = [];
   params.push(data);
   params.push(data.id);
 
   let connection = mysql.createConnection(connInfo);
-  let query = "update notes set ? where id = ?;";
-
+  let query = "update notes set ?,lastEdit = NOW() where id = ?;";
 
   connection.query(query,params, (err, results) => {
     if (err) {

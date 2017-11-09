@@ -18,11 +18,15 @@ angular.module('notesApp')
 		}
 
 		let noteModal;
-		$scope.openNoteModal = isNew => {
+		$scope.openNoteModal = (isNew, note) => {
 
 			if (isNew) {
 				$scope.editNote = {};
 				$scope.isNewNote = true;
+			} else {
+				console.log(note);
+				$scope.editNote = note;
+				$scope.isNewNote = false;
 			}
 
 			noteModal = $uibModal.open({
@@ -41,11 +45,24 @@ angular.module('notesApp')
 		$scope.saveNote = (note) => {
 
 			if ($scope.isNewNote) {
-				$http.post(baseUrl + "/notes",{data: note}).then(response => {
+				$http.post(baseUrl + "/notes", {
+						data: note
+					}).then(() => {
+						noteModal.close();
 						getNotes();
 					})
 					.catch(response => {
-						$scope.showError("Failed to create new note",response.data);
+						$scope.showError("Failed to create new note", response.data);
+					});
+			} else {
+				$http.put(baseUrl + "/notes", {
+						data: note
+					}).then(() => {
+						noteModal.close();
+						getNotes();
+					})
+					.catch(response => {
+						$scope.showError("Failed to save note", response.data);
 					});
 			}
 

@@ -1,6 +1,6 @@
 <div class="container-fluid" data-ng-controller="homeController">
     <div class="col-xs-12 col-sm-4 col-md-3" ng-repeat="it in allNotes">
-        <div class="col-xs-12 padding-10">
+        <div class="col-xs-12 padding-10" ng-click="openNoteModal(false,it)"">
             <div class="note-box" ng-style="{'background-color': it.color !== null ? it.color : 'white'}" >
                 <div class="row">
                     <div class="col-xs-12 font-bold word-wrap">
