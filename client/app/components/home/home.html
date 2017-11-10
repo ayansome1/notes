@@ -3,10 +3,10 @@
         <div class="col-xs-12 padding-10 cursor-pointer" ng-click="openNoteModal(false,it)"">
             <div class="note-box" ng-style="{'background-color': it.color !== null ? it.color : 'white'}" >
                 <div class="row">
-                    <div class="col-xs-12 font-bold word-wrap">
+                    <div class="col-xs-12 font-bold word-wrap clipped-subject">
                         {{it.subject}}
                     </div>
-                    <div class="col-xs-12 word-wrap clipped">
+                    <div class="col-xs-12 word-wrap clipped-content">
                         {{it.contents}}
                     </div>
                     <div class="col-xs-12 text-right">

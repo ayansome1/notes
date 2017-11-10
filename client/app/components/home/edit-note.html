@@ -2,11 +2,11 @@
     <span class="top-right-of-parent cursor-pointer" ng-click="closeNoteModal()"><i class="fa fa-times" aria-hidden="true"></i></span>
     <input class="form-control no-border font-bold font-120" ng-style="{'background-color':editNote.color}" ng-model="editNote.subject" placeholder="Title...">
     <input class="form-control no-border" ng-style="{'background-color':editNote.color}" ng-model="editNote.contents" placeholder="Take a note...">
-    <div class="row font-90 text-right padding-0 margin-right-10 text-muted" ng-show="editNote.lastEdit">
+    <div class="row font-90 text-right padding-0 margin-right-10" ng-show="editNote.lastEdit">
         Edited <span am-time-ago="editNote.lastEdit"></span>
     </div>
     <div class="row margin-top-5 margin-left-10 margin-right-10">
         <color-picker color="editNote.color" options="colorOptions" on-color-changed="colorChanged(newColor, oldColor)"></color-picker>
-        <button class="btn btn-outline btn-default btn-sm pull-right" ng-disabled="!editNote.subject || !editNote.contents" ng-click="saveNote(editNote)">Done</button>
+        <button class="btn btn-outline btn-default btn-sm pull-right font-bold" ng-disabled="!editNote.subject || !editNote.contents" ng-click="saveNote(editNote)">Done</button>
     </div>
 </div>

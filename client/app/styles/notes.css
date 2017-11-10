@@ -14501,12 +14501,17 @@ text-white {
     padding-right: 20px;
 }
 
-.clipped {
+.clipped-content {
     overflow: hidden;
     line-height: 1.5em;
     height: 3em;
 }
 
+.clipped-subject {
+    overflow: hidden;
+    line-height: 1.5em;
+    height: 1.5em;
+}
 
 
 
