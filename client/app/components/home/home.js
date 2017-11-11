@@ -9,7 +9,6 @@ angular.module('notesApp')
 		function getNotes() {
 
 			$http.get(baseUrl + "/notes").then(response => {
-					console.log(response.data);
 					$scope.allNotes = response.data;
 				})
 				.catch(response => {
@@ -24,7 +23,6 @@ angular.module('notesApp')
 				$scope.editNote = {};
 				$scope.isNewNote = true;
 			} else {
-				console.log(note);
 				$scope.editNote = angular.copy(note);
 				$scope.isNewNote = false;
 			}
@@ -66,7 +64,6 @@ angular.module('notesApp')
 					});
 			}
 
-			// console.log("jvhvhjv",note);
 		};
 
 
