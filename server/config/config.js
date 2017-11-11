@@ -14,5 +14,4 @@ if (environment === 'production') {
 	config = require('./config.json');
 }
 
-
 exports = module.exports = config;
