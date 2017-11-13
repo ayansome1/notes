@@ -53,6 +53,6 @@ app.run(['$rootScope', function ($rootScope) {
 	};
 
 }]);
-
+ 
 app.constant('baseUrl', 'http://localhost/notes/api');
 app.constant('COLORS',['transparent','#FF8A80', '#FFD180', '#FFFF8D', '#CFD8DC', '#80D8FF', '#A7FFEB', '#CCFF90']);
