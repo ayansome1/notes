@@ -11,5 +11,5 @@
 	"notes": {
 		"port": 9080,
 		"corsorigin": "http://localhost"
-	}
+	} 
 }
