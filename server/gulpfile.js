@@ -40,7 +40,7 @@ gulp.task('processFilesForCacheBump', function () {
         .pipe(debug({ title: 'Processing files for cache dump:', showFiles: false }))
         .pipe(useref())
         .pipe(gulpif('*.css', cssmin()))
-        .pipe(gulpif('*.js',minify({
+        .pipe(gulpif(['scripts/notes*.js'],minify({
             ext:{
                 min:'.js'
             },
