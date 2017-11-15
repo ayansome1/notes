@@ -49,7 +49,7 @@ gulp.task('processFilesForCacheBump', function () {
         .pipe(indexHtmlFilter)
         .pipe(rev())
         .pipe(indexHtmlFilter.restore)
-        .pipe(revReplace())
+        .pipe(revReplace()) 
         .pipe(gulp.dest('../client/app/dest'));
 });
 
