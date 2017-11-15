@@ -23,7 +23,7 @@ let minify = require('gulp-minify');
 
 gulp.task('default', () => {
     gutil.log(gutil.colors.yellow('=== Starting default run sequence ==='));
-    runSequence('deletePreviousDestFolder', 'copy', 'processFilesForCacheBump', 'changeBowerLinks');
+    runSequence('deletePreviousDestFolder', 'copy', 'processFilesForCacheBump');
     gutil.log(gutil.colors.green('=== default run sequence complete ==='));
 });
 
@@ -63,22 +63,11 @@ gulp.task('deletePreviousDestFolder', function () {
         .pipe(clean({ force: true }));
 });
 
-/* changed bower components link in index.html 
-    relative urls pointed to parent folder */
-
-gulp.task('changeBowerLinks', function () {
-    gutil.log(gutil.colors.yellow('=== Changing bower links ==='));
-    gulp.src('../client/app/dest/index.html')
-        .pipe(debug({ title: 'Changing bower links:', showFiles: false }))
-        .pipe(replace('../bower', './bower'))
-        .pipe(gulp.dest('../client/app/dest/'));
-    gutil.log(gutil.colors.green('=== Changing bower links done ==='));
-});
 
 /* copy the files to dest folder 
     required because some files are not to be processed */
 
-gulp.task('copy', ['copyViewComponents', 'copyFontsBroken', 'copyBowerComponents'], () => {
+gulp.task('copy', ['copyViewComponents', 'copyFontsBroken'], () => {
     gutil.log(gutil.colors.yellow('=== Copying Unprocessed Files ==='));
     gutil.log(gutil.colors.green('=== Copying Unprocessed Files done ==='));
 });
@@ -89,14 +78,6 @@ gulp.task('copyViewComponents', () => {
         .pipe(debug({ title: 'copying Views components:', showFiles: false }))
         .pipe(gulp.dest('../client/app/dest/components'));
     gutil.log(gutil.colors.green('=== Copying Views components done ==='));
-});
-
-gulp.task('copyBowerComponents', () => {
-    gutil.log(gutil.colors.yellow('=== Copying Bower Components ==='));
-    gulp.src('../client/bower_components/**/*')
-        .pipe(debug({ title: 'copying bower components:', showFiles: false }))
-        .pipe(gulp.dest('../client/app/dest/bower_components'));
-    gutil.log(gutil.colors.green('=== Copying Bower Components done ==='));
 });
 
 gulp.task('copyFontsBroken', () => {
