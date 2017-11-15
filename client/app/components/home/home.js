@@ -42,6 +42,10 @@ angular.module('notesApp')
 
 		$scope.saveNote = (note) => {
 
+			if(!note.color){
+				note.color = COLORS[0];
+			}
+
 			if ($scope.isNewNote) {
 				$http.post(baseUrl + "/notes", {
 						data: note

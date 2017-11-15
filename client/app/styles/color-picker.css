@@ -34,7 +34,7 @@
     opacity: 1;
     cursor: pointer;
     display: inline-block;
-    border: 2px solid transparent;
+    border: 2px solid #999;
     outline: none!important;
 }
 

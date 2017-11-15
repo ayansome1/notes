@@ -6,7 +6,7 @@
         Edited <span am-time-ago="editNote.lastEdit"></span>
     </div>
     <div class="row margin-top-5 margin-left-10 margin-right-10">
-        <color-picker color="editNote.color" options="colorOptions" on-color-changed="colorChanged(newColor, oldColor)"></color-picker>
+        <color-picker color="editNote.color" options="colorOptions"></color-picker>
         <button class="btn btn-outline btn-default btn-sm pull-right font-bold" ng-disabled="!editNote.subject || !editNote.contents" ng-click="saveNote(editNote)">Done</button>
     </div> 
 </div>
