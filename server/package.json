@@ -11,6 +11,7 @@
   "dependencies": {
     "cors": "^2.8.4",
     "express": "^4.16.2",
+    "gulp": "^3.9.1",
     "gulp-clean": "^0.3.2",
     "gulp-cssmin": "^0.2.0",
     "gulp-debug": "^3.1.0",
