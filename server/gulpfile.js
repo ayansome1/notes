@@ -16,6 +16,7 @@ let clean = require('gulp-clean');
 let runSequence = require('run-sequence');
 let replace = require('gulp-replace');
 let debug = require('gulp-debug');
+let minify = require('gulp-minify');
 
 /* default task
     required for gulp to launch gulp command */
@@ -39,6 +40,12 @@ gulp.task('processFilesForCacheBump', function () {
         .pipe(debug({ title: 'Processing files for cache dump:', showFiles: false }))
         .pipe(useref())
         .pipe(gulpif('*.css', cssmin()))
+        .pipe(gulpif('*.js',minify({
+            ext:{
+                min:'.js'
+            },
+            noSource: true
+        })))
         .pipe(indexHtmlFilter)
         .pipe(rev())
         .pipe(indexHtmlFilter.restore)
