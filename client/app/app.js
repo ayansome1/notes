@@ -36,6 +36,7 @@ app.run(['$rootScope', function ($rootScope) {
 		if (msg) {
 			content += '<br>' + msg;
 		}
+		
 		var $layout = 'top';
 		noty({
 			theme: 'urban-noty',
