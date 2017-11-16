@@ -11,14 +11,13 @@ connInfo.multipleStatements = true;
 let getNotes = (req, res) => {
 
   let connection = mysql.createConnection(connInfo);
-  let query = "select * from notes;";
+  let query = "se from notes;";
 
   connection.query(query, (err, results) => {
     if (err) {
       winston.error(err);
       res.status(500).send(err);
     } else {
-      winston.error("no error");
       res.status(200).send(results);
     }
   });
