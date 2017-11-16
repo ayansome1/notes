@@ -7,11 +7,10 @@ let winston = require('winston');
 let connInfo = config.sqlconn;
 connInfo.multipleStatements = true;
 
-
 let getNotes = (req, res) => {
 
   let connection = mysql.createConnection(connInfo);
-  let query = "se from notes;";
+  let query = "select * from notes;";
 
   connection.query(query, (err, results) => {
     if (err) {
@@ -22,6 +21,7 @@ let getNotes = (req, res) => {
     }
   });
   connection.end();
+
 };
 
 let saveNewNote = (req,res) => {
@@ -29,13 +29,12 @@ let saveNewNote = (req,res) => {
   let data = req.body.data;
   let params = [];
   params.push(data);
-
   let connection = mysql.createConnection(connInfo);
   let query = "insert into notes set ?,lastEdit=NOW();";
 
-
   connection.query(query,params, (err, results) => {
     if (err) {
+      winston.error(err);
       res.status(500).send(err);
     } else {
       res.status(200).send(results);
@@ -58,6 +57,7 @@ let editNote = (req,res) => {
 
   connection.query(query,params, (err, results) => {
     if (err) {
+      winston.error(err);
       res.status(500).send(err);
     } else {
       res.status(200).send(results);

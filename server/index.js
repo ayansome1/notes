@@ -8,20 +8,13 @@ let app = express();
 let http = require('http');
 let cors = require('cors');
 let winston = require('winston');
+let slacklog = require('slacklog');
 
-
-var slacklog = require('slacklog');
 winston.add(slacklog, {
     level: 'error',
     moduleName: 'Notes'
 });
 
-
-//let slackWinston = require('slack-winston').Slack;
-
-
-//https://medium.com/@adamzerner/how-bodyparser-works-247897a93b90
-//Using body parser allows you to access req.body from within your routes
 let bodyParser = require('body-parser');
 
 app.use(bodyParser.json()); // to support JSON-encoded bodies
