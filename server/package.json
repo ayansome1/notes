@@ -26,6 +26,9 @@
     "morgan": "^1.9.0",
     "mysql": "^2.15.0",
     "q": "^1.5.1",
-    "run-sequence": "^2.2.0"
+    "run-sequence": "^2.2.0",
+    "slack-winston": "0.0.9",
+    "winston": "^2.4.0",
+    "winston-slack": "^0.1.6"
   }
 }

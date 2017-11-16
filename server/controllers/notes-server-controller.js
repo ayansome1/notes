@@ -3,6 +3,7 @@
 let q = require('q');
 let config = require('../config/config.js');
 let mysql = require('mysql');
+let winston = require('winston')
 let connInfo = config.sqlconn;
 connInfo.multipleStatements = true;
 
@@ -10,12 +11,13 @@ connInfo.multipleStatements = true;
 let getNotes = (req, res) => {
 
   let connection = mysql.createConnection(connInfo);
-  let query = "select * from notes;";
+  let query = "selectg from notes;";
 
   connection.query(query, (err, results) => {
     if (err) {
       res.status(500).send(err);
     } else {
+      winston.error(err);
       res.status(200).send(results);
     }
   });
