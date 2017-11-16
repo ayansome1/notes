@@ -17,6 +17,7 @@ let getNotes = (req, res) => {
       winston.error(err);
       res.status(500).send(err);
     } else {
+      console.log("getting notes");
       res.status(200).send(results);
     }
   });
