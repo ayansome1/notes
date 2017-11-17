@@ -6,7 +6,7 @@
         Edited <span am-time-ago="editNote.lastEdit"></span>
     </div>
     <div class="row margin-top-5 margin-left-10 margin-right-10">
-        <div class="three-dot margin-right-10 dropdown cursor-pointer">
+        <div class="three-dot margin-right-10 dropdown cursor-pointer" ng-show = "!isNewNote">
             <i class="fa fa-ellipsis-v fa-lg"></i>
             <div class="dropdown-content">
                  <a ng-click="deleteNote(editNote.id)">Delete</a>
