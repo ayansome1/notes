@@ -42,7 +42,7 @@ angular.module('notesApp')
 
 		$scope.saveNote = (note) => {
 
-			if(!note.color){
+			if (!note.color) {
 				note.color = COLORS[0];
 			}
 
@@ -52,6 +52,7 @@ angular.module('notesApp')
 					}).then(() => {
 						noteModal.close();
 						getNotes();
+						$scope.showSuccess("Note created successfully");						
 					})
 					.catch(response => {
 						$scope.showError("Failed to create new note", response.data);
@@ -62,11 +63,25 @@ angular.module('notesApp')
 					}).then(() => {
 						noteModal.close();
 						getNotes();
+						$scope.showSuccess("Note updated successfully");
 					})
 					.catch(response => {
 						$scope.showError("Failed to save note", response.data);
 					});
 			}
+
+		};
+
+		$scope.deleteNote = (noteId) => {
+
+			$http.delete(baseUrl + "/notes/" + noteId).then(() => {
+					noteModal.close();
+					getNotes();
+					$scope.showSuccess("Note deleted successfully");
+				})
+				.catch(response => {
+					$scope.showError("Failed to delete note", response.data);
+				});
 
 		};
 

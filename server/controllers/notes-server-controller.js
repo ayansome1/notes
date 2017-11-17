@@ -10,14 +10,13 @@ connInfo.multipleStatements = true;
 let getNotes = (req, res) => {
 
   let connection = mysql.createConnection(connInfo);
-  let query = "select * from notes;";
+  let query = "select * from notes order by id desc;";
 
   connection.query(query, (err, results) => {
     if (err) {
       winston.error(err);
       res.status(500).send(err);
     } else {
-      console.log("getting notes");
       res.status(200).send(results);
     }
   });
@@ -68,8 +67,28 @@ let editNote = (req,res) => {
 
 };
 
+let deleteNote = (req,res) => {
+
+  let id = req.params.id;
+
+  let connection = mysql.createConnection(connInfo);
+  let query = "delete from notes where id = ?;";
+
+  connection.query(query,[id], (err) => {
+    if (err) {
+      winston.error(err);
+      res.status(500).send(err);
+    } else {
+      res.status(200).send();
+    }
+  });
+  connection.end();
+
+};
+
 module.exports = {
   getNotes,
   saveNewNote,
-  editNote
+  editNote,
+  deleteNote
 };
