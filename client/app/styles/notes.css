@@ -13881,6 +13881,10 @@ fieldset[disabled] .btn-float.active {
     padding-left: 10px;
 }
 
+.padding-left-15 {
+    padding-left: 15px;
+}
+
 .padding-left-20 {
     padding-left: 20px;
 }
@@ -13941,9 +13945,6 @@ fieldset[disabled] .btn-float.active {
     padding-bottom: 30px;
 }
 
-.padding-left-15 {
-    padding-left: 15px;
-}
 
 
 /*padding--end*/
@@ -14489,7 +14490,7 @@ text-white {
 .top-right-of-parent {
   position:absolute;
   top:15px;
-  right:15px;
+  right:25px;
 }
 
 .note-box {
