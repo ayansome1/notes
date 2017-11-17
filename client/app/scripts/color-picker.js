@@ -1,6 +1,6 @@
 angular.module('tb-color-picker', [])
     .run(['$templateCache', function($templateCache) {
-        $templateCache.put('color-picker.tpl.html', '<span class="color-picker">'+
+        $templateCache.put('color-picker.tpl.html', '<div class="color-picker">'+
             '<div class="selected-color" ng-style="{\'background-color\': vm.color}"></div>' +
             '<div class="color-palette">'+
                 '<div ng-repeat="option in vm.options"'+
@@ -8,7 +8,7 @@ angular.module('tb-color-picker', [])
                 'ng-class="{\'palette-selected-color\': option == vm.color, \'transparent-color\': option == \'transparent\'}"'+
                 'ng-click="vm.changeColor(option)"></div>'+
             '</div>'+
-        '</span>');
+        '</div>');
     }])
     .directive('colorPicker', function () {
         return {

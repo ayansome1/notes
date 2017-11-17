@@ -14,6 +14,10 @@
     z-index: 4011;
 }
 
+.color-picker{
+    display: inline-block;
+}
+
 .color-picker:hover .color-palette {
     visibility: visible;
     opacity: 1;
@@ -28,9 +32,10 @@
     box-sizing: border-box;
     -webkit-border-radius: 50%;
     border-radius: 50%;
-    height: 26px;
-    width: 26px;
+    height: 20px;
+    width: 20px;
     margin: 2px;
+    margin-bottom: 0px;
     opacity: 1;
     cursor: pointer;
     display: inline-block;
@@ -38,9 +43,9 @@
     outline: none!important;
 }
 
-.selected-color, .color-palette div:hover {
+/*.selected-color, .color-palette div:hover {
     border-color: rgba(0,0,0,0.4);
-}
+}*/
 
 .color-palette div.palette-selected-color {
     background-image: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiIHN0YW5kYWxvbmU9Im5vIj8+Cjxzdmcgd2lkdGg9IjE4cHgiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgZmlsbD0iIzAwMDAwMCIgb3BhY2l0eT0iMC41NCIgdmlld0JveD0iMCAwIDE4IDE4IiBoZWlnaHQ9IjE4cHgiPgogIDxwYXRoIGQ9Im0wIDBoMTh2MThoLTE4eiIgZmlsbD0ibm9uZSIvPgogIDxwYXRoIGQ9Im02LjYxIDExLjg5bC0zLjExLTMuMTEtMS4wNiAxLjA2IDQuMTcgNC4xNiA4Ljk1LTguOTUtMS4wNi0xLjA1eiIvPgo8L3N2Zz4K);

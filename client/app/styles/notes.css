@@ -14513,6 +14513,10 @@ text-white {
     height: 1.5em;
 }
 
+.three-dot {
+  vertical-align: super;
+  color: #999
+}
 
 
 
