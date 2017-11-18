@@ -7,6 +7,10 @@ angular.module('notesApp')
 	$urlRouterProvider.otherwise('/');
 
 	$stateProvider
+		.state('login', {
+			url: '/login',
+			templateUrl: 'components/login/login.html',
+		})
 		.state('app', {
 			abstract: true,
 			templateUrl: 'components/common/layout.html'

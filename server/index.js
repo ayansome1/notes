@@ -9,6 +9,40 @@ let http = require('http');
 let cors = require('cors');
 let winston = require('winston');
 let slacklog = require('slacklog');
+let passport = require('passport');
+let StrategyGoogle = require('passport-google-openidconnect').Strategy;
+
+let googleAuthParams = {
+    clientID: config.googleauth.clientid,
+    clientSecret: config.googleauth.clientsecret,
+    callbackURL: config.googleauth.callbackUrl
+};
+
+passport.use(new StrategyGoogle(googleAuthParams,
+  function(iss, sub, profile, accessToken, refreshToken, done) {
+	return done(null,profile);    
+  }
+));
+
+app.use(passport.initialize());
+app.use(passport.session());
+
+passport.serializeUser(function(user, done) {
+  done(null, user);
+});
+
+passport.deserializeUser(function( user, done) {
+  done(null, user);
+});
+
+app.get('/auth/google', passport.authenticate('google-openidconnect', {
+    scope: ['email', 'profile']
+}));
+
+app.get('/auth/google/callback', passport.authenticate('google-openidconnect', {
+    successRedirect: config.googleauth.redirect,
+    failureRedirect: config.googleauth.failureRedirect
+}));
 
 winston.add(slacklog, {
     level: 'error',
