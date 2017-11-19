@@ -18,5 +18,6 @@
 		"callbackUrl": "http://localhost/notes/api/auth/google/callback",
 		"redirect": "http://localhost/notes/app/#/",
 		"failureRedirect": "http://localhost/notes/app/#/login"
-	}
+	},
+	"sessionSecret" : "Note@911#!"
 }

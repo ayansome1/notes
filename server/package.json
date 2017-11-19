@@ -9,8 +9,10 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "connect-mongo": "^2.0.0",
     "cors": "^2.8.4",
     "express": "^4.16.2",
+    "express-session": "^1.15.6",
     "gulp": "^3.9.1",
     "gulp-clean": "^0.3.2",
     "gulp-cssmin": "^0.2.0",
@@ -30,6 +32,7 @@
     "q": "^1.5.1",
     "run-sequence": "^2.2.0",
     "slack-winston": "0.0.9",
+    "underscore": "^1.8.3",
     "winston": "^2.4.0",
     "winston-slack": "^0.1.6"
   }

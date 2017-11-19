@@ -10,24 +10,92 @@ let cors = require('cors');
 let winston = require('winston');
 let slacklog = require('slacklog');
 let passport = require('passport');
+let q = require('q');
+let _ = require('underscore');
+let mysql = require('mysql');
 let StrategyGoogle = require('passport-google-openidconnect').Strategy;
+let session = require('express-session');
+let MongoStore = require('connect-mongo')(session);
+let mongoConnectionUrl = 'mongodb://localhost:27017/notesusers';
+
+
+let connInfo = config.sqlconn;
+connInfo.multipleStatements = true;
 
 let googleAuthParams = {
     clientID: config.googleauth.clientid,
     clientSecret: config.googleauth.clientsecret,
-    callbackURL: config.googleauth.callbackUrl
+    callbackURL: config.googleauth.callbackUrl,
+    passReqToCallback: true
 };
 
+app.use(session({
+    secret: config.sessionSecret,
+    name: "notes",
+    store: new MongoStore({
+        url: mongoConnectionUrl,
+        ttl: 1 * 24 * 60 * 60, // = 1 days. Default 
+        autoRemove: 'native'
+    }),
+    resave: true,
+    saveUninitialized: true
+}));
+
+
+function saveUserProfile(profile) {
+    let deferred = q.defer();
+    let connection = mysql.createConnection(connInfo);
+
+    let params = [];
+    let q1 = `Insert into notesusers (email,name,photoUrl) VALUES (?,?,?) 
+    		  on DUPLICATE key update 
+    		  name = values(name),
+    		  photoUrl = values(photoUrl);`;
+    
+    params.push(profile._json.email,profile._json.name,profile._json.picture);
+  
+    let q2 = "Select * from notesusers where email = ?;";
+
+    params.push(profile._json.email);
+
+    connection.query(q1 + q2, params, function(err, results) {
+        if (err) {
+            winston.error(err);
+            deferred.reject(err);
+        }
+
+        let user = results[1][0];
+
+        if(results[1][0]){
+            deferred.resolve(user);
+        }
+
+        deferred.resolve();
+    });
+
+    connection.end();
+    return deferred.promise;
+}
+
 passport.use(new StrategyGoogle(googleAuthParams,
-  function(iss, sub, profile, accessToken, refreshToken, done) {
-	return done(null,profile);    
+  function(req, iss, sub, profile, accessToken, refreshToken, done) {
+
+        saveUserProfile(profile).then(function(user) {
+
+            if (_.isEmpty(user)) {
+                return done(null, false);
+            }
+
+            return done(null, profile);
+
+        });  
   }
 ));
 
 app.use(passport.initialize());
 app.use(passport.session());
 
-passport.serializeUser(function(user, done) {
+passport.serializeUser(function(req, user, done) {
   done(null, user);
 });
 
@@ -43,6 +111,16 @@ app.get('/auth/google/callback', passport.authenticate('google-openidconnect', {
     successRedirect: config.googleauth.redirect,
     failureRedirect: config.googleauth.failureRedirect
 }));
+
+app.get('/loggedin', function(req, res) {
+    console.log(req.user);
+    res.send(req.isAuthenticated() ? req.user : false);
+});
+
+app.get('/logout', function(req, res) {
+    req.logout();
+    res.send();
+});
 
 winston.add(slacklog, {
     level: 'error',
@@ -65,10 +143,19 @@ if (!process.env.NODE_ENV) {
     app.use(require('morgan')('dev'));
 }
 
+function auth() {
+    return function(req, res, next) {
+        if (!req.isAuthenticated()) {
+            res.sendStatus(401);
+        } else {
+                next();
+        }
+    };
+}
+
 let notesRoutes = require('./routes/notes-server-routes.js');
-notesRoutes(app);
+notesRoutes(app,auth);
 
-var server = http.createServer(app);
-
+let server = http.createServer(app);
 server.listen(config.notes.port);
 
