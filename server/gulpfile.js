@@ -67,7 +67,7 @@ gulp.task('deletePreviousDestFolder', function () {
 /* copy the files to dest folder 
     required because some files are not to be processed */
 
-gulp.task('copy', ['copyViewComponents', 'copyFontsBroken'], () => {
+gulp.task('copy', ['copyViewComponents', 'copyFontsBroken' , 'copyImages'], () => {
     gutil.log(gutil.colors.yellow('=== Copying Unprocessed Files ==='));
     gutil.log(gutil.colors.green('=== Copying Unprocessed Files done ==='));
 });
@@ -87,4 +87,12 @@ gulp.task('copyFontsBroken', () => {
         .pipe(debug({ title: 'copying fonts:', showFiles: false }))
         .pipe(gulp.dest('../client/app/dest/fonts'));
     gutil.log(gutil.colors.green('=== Copying Fonts done ==='));
+});
+
+gulp.task('copyImages', () => {
+    gutil.log(gutil.colors.yellow('=== Copying Images ==='));
+    gulp.src('../client/app/images/**/*')
+        .pipe(debug({ title: 'copying images:', showFiles: false }))
+        .pipe(gulp.dest('../client/app/dest/images'));
+    gutil.log(gutil.colors.green('=== Copying Images done ==='));
 });
