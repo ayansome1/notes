@@ -40,12 +40,12 @@ gulp.task('processFilesForCacheBump', function () {
         .pipe(debug({ title: 'Processing files for cache dump:', showFiles: false }))
         .pipe(useref())
         .pipe(gulpif('css/notes*.css', cssmin()))
-        .pipe(gulpif('scripts/notes*.js',minify({
-            ext:{
-                min:'.js'
-            },
-            noSource: true
-        })))
+        // .pipe(gulpif('scripts/notes*.js',minify({
+        //     ext:{
+        //         min:'.js'
+        //     },
+        //     noSource: true
+        // })))
         .pipe(indexHtmlFilter)
         .pipe(rev())
         .pipe(indexHtmlFilter.restore)
