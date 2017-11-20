@@ -2,7 +2,7 @@
 /* global require*/
 /* global process, console */
 /* jshint node: true, quotmark: false */
-let config = require('./config/config.json');
+let config = require('./config/config.js');
 let express = require('express');
 let app = express();
 let http = require('http');
