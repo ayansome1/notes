@@ -81,7 +81,6 @@ passport.use(new StrategyGoogle(googleAuthParams,
   function(req, iss, sub, profile, accessToken, refreshToken, done) {
 
         saveUserProfile(profile).then(function(user) {
-
             if (_.isEmpty(user)) {
                 return done(null, false);
             }
@@ -95,8 +94,33 @@ passport.use(new StrategyGoogle(googleAuthParams,
 app.use(passport.initialize());
 app.use(passport.session());
 
+function getUserInfo(email) {
+    var deferred = q.defer();
+    var connection = mysql.createConnection(connInfo);
+
+    var query = "Select * from notesusers where email = ?;";
+
+    connection.query(query, [email], function(err, result) {
+        if (err) {
+            deferred.reject(err);
+        } else {
+            deferred.resolve(result[0]);
+        }
+    });
+    connection.end();
+    return deferred.promise;
+}
+
 passport.serializeUser(function(req, user, done) {
-  done(null, user);
+
+    let email = user._json.email;
+    getUserInfo(email).then(function(result) {
+        req.user.userId = result.id;
+        return done(null, user);
+    }, function(err) {
+        winston.error(err);
+    });
+
 });
 
 passport.deserializeUser(function( user, done) {
@@ -113,7 +137,6 @@ app.get('/auth/google/callback', passport.authenticate('google-openidconnect', {
 }));
 
 app.get('/loggedin', function(req, res) {
-    console.log(req.user);
     res.send(req.isAuthenticated() ? req.user : false);
 });
 

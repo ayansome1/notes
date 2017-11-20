@@ -10,9 +10,9 @@ connInfo.multipleStatements = true;
 let getNotes = (req, res) => {
 
   let connection = mysql.createConnection(connInfo);
-  let query = "select * from notes order by id desc;";
+  let query = "select * from notes where userId = ? order by id desc;";
 
-  connection.query(query, (err, results) => {
+  connection.query(query,[req.user.userId], (err, results) => {
     if (err) {
       winston.error(err);
       res.status(500).send(err);
@@ -30,7 +30,8 @@ let saveNewNote = (req,res) => {
   let params = [];
   params.push(data);
   let connection = mysql.createConnection(connInfo);
-  let query = "insert into notes set ?,lastEdit=NOW();";
+  let query = "insert into notes set ?,lastEdit=NOW(),userId = ?;";
+  params.push(req.user.userId);
 
   connection.query(query,params, (err, results) => {
     if (err) {
