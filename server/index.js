@@ -113,10 +113,14 @@ function getUserInfo(email) {
 
 passport.serializeUser(function(req, user, done) {
 
-    let email = user._json.email;
-    getUserInfo(email).then(function(result) {
-        req.user.userId = result.id;
-        return done(null, user);
+    let userDetails = {};
+    userDetails.name = user._json.name;
+    userDetails.picture = user._json.picture;
+    userDetails.email = user._json.email;
+
+    getUserInfo(user._json.email).then(function(result) {
+        userDetails.userId = result.id;
+        return done(null, userDetails);
     }, function(err) {
         winston.error(err);
     });
