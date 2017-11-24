@@ -6,3 +6,9 @@ Personalized notes app built using Nodejs,AngularJS,MySql
 [![BCH compliance](https://bettercodehub.com/edge/badge/ayansome1/notes?branch=master)](https://bettercodehub.com/)
 
 Start using the notes app at https://ayan.work/notes
+
+![alt text](https://github.com/ayansome1/notes/blob/master/screenshots/mobile.png)
+
+* Optimized for both mobile and desktop usage.
+* Login with google facility
+* Prioritize notes with colors
