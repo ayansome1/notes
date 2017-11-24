@@ -13993,11 +13993,19 @@ fieldset[disabled] .btn-float.active {
 
 
 /* floating action button appearing at bottom right corner of page --start*/
-
-.fab-bottom-right {
-    position: fixed;
-    bottom: 100px;
-    right: 100px;
+@media (min-width: 301px) {
+  .fab-bottom-right {
+      position: fixed;
+      bottom: 40px;
+      right: 50px;
+  }
+}
+@media (max-width: 300px) {
+  .fab-bottom-right {
+      position: fixed;
+      bottom: 30px;
+      right: 40px;
+  }
 }
 
 

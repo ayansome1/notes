@@ -1,22 +1,28 @@
 <div class="container-fluid" data-ng-controller="homeController">
     <div class="col-xs-12 col-sm-4 col-md-3" ng-repeat="it in allNotes">
-        <div class="col-xs-12 padding-10 cursor-pointer" ng-click="openNoteModal(false,it)"">
-            <div class="note-box" ng-style="{'background-color': it.color !== null ? it.color : 'white'}" >
-                <div class="row">
-                    <div class="col-xs-12 font-bold word-wrap clipped-subject">
+        <div class="col-xs-12 padding-10 cursor-pointer" ng-click="openNoteModal(false,it)" ">
+            <div class="note-box " ng-style="{ 'background-color': it.color !== null ? it.color : 'white'} " >
+                <div class="row ">
+                    <div class="col-xs-12 font-bold font-120 word-wrap clipped-subject ">
                         {{it.subject}}
                     </div>
-                    <div class="col-xs-12 word-wrap clipped-content">
+                    <div class="col-xs-12 word-wrap clipped-content ">
                         {{it.contents}}
                     </div>
-<!--                     <div class="col-xs-12 text-right">
-                        <span am-time-ago="it.lastEdit">{{it.lastEdit}}</span>
-                    </div> -->
                 </div>
             </div>
         </div>
     </div>
-    <button class="btn btn-icon-icon btn-lg btn-float btn-round fab-bottom-right" ng-click="openNoteModal(true)">
-        <i class="fa fa-plus"></i>
+    <span class="centered" ng-show="allNotes.length==0 ">
+        <span class="font-150 font-bold" >
+            Welcome {{user.name}} !
+            <br>
+        </span>
+        <span class="font-120">
+            Start adding notes now...
+        </span>
+    </span>
+    <button class="btn btn-icon-icon btn-lg btn-float btn-round fab-bottom-right " ng-click="openNoteModal(true) ">
+        <i class="fa fa-plus "></i>
     </button>
 </div>
