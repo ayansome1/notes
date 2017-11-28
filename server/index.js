@@ -32,6 +32,7 @@ let googleAuthParams = {
 app.use(session({
     secret: config.sessionSecret,
     name: "notes",
+    cookie: { maxAge: 3 * 24 * 60 * 60 * 1000},
     store: new MongoStore({
         url: mongoConnectionUrl,
         ttl: 1 * 24 * 60 * 60, // = 1 days. Default 
