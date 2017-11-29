@@ -18,7 +18,7 @@ angular.module('notesApp')
 				return $state.go('login');
 			} else if (next.name === 'login') {
 				event.preventDefault();
-				return $state.go('/');
+				return $state.go('app.home');
 			}
 			return;
 		}, function(err) {
