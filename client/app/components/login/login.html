@@ -1,8 +1,39 @@
-<div class="container-fluid" data-ng-controller="loginCtrl">
-    <div class="centered">
-        <a href="{{baseUrl}}/auth/google" class="btn btn-danger btn-md btn-icon"> 
+<style type="text/css">
+.carousel-indicators {
+    bottom: 100px;
+}
+
+.carousel-indicators .active {
+    margin: 10px;
+}
+
+.carousel-indicators li {
+    margin: 10px;
+}
+
+.carousel-caption {
+    top: 40%;
+}
+
+.uib-slide {
+    height: 100vh;
+}
+
+.btn-default.btn-outline {
+    color: white;
+    border: 1px solid;
+}
+</style>
+<div data-ng-controller="loginCtrl">
+    <div uib-carousel active="active" interval="5000" no-pause="true">
+        <div uib-slide ng-repeat="slide in slides track by slide.id" index="slide.id" ng-style="{'background-color' : slide.backgroundColor}" style="height: 100vh;">
+            <div class="carousel-caption">
+                <span class="font-180">{{slide.text}}</span>
+            </div>
+        </div>
+    </div>
+    <a href="{{baseUrl}}/auth/google" class="center-button btn btn-default btn-outline btn-md btn-icon"> 
         <i class="fa fa-google fa-lg padding-top-1"></i>
 		<span class="font-120 font-bold" >Login with google</span>
-		</a>
-    </div>
+	</a>
 </div>

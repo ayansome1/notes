@@ -83,7 +83,7 @@ gulp.task('copyViewComponents', () => {
 gulp.task('copyFontsBroken', () => {
     gutil.log(gutil.colors.yellow('=== Copying Fonts ==='));
     gulp.src([
-        '../client/bower_components/font-awesome/fonts/*'])
+        '../client/bower_components/font-awesome/fonts/*','../client/bower_components/bootstrap/dist/fonts/*'])
         .pipe(debug({ title: 'copying fonts:', showFiles: false }))
         .pipe(gulp.dest('../client/app/dest/fonts'));
     gutil.log(gutil.colors.green('=== Copying Fonts done ==='));
